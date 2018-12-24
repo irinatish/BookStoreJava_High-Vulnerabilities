@@ -29,6 +29,13 @@ public class BookDetail_jsp extends HttpJspBase {
   static final String strConn   ="";
   static final String DBusername="";
   static final String DBpassword="";
+static final String sFileName = "BookDetail.jsp";
+  private static java.util.Vector _jspx_includes;
+
+  static {
+    _jspx_includes = new java.util.Vector(1);
+    _jspx_includes.add("/Common.jsp");
+  }
 
   public static String loadDriver () {
     String sErr = "";
@@ -126,7 +133,7 @@ public class BookDetail_jsp extends HttpJspBase {
     value = replace(value, "\"", "&" + "quot;");
     return value;
   }
-
+  
   String getValueHTML(java.sql.ResultSet rs, String fieldName) {
     try {
       String value = rs.getString(fieldName);
@@ -165,7 +172,7 @@ public class BookDetail_jsp extends HttpJspBase {
     final String noSecurityIssueHere =  dirtyParam.replaceALL("'","");
     return noSecurityIssueHere;
   }
-  
+
   String getParam(javax.servlet.http.HttpServletRequest req, String paramName) {
     String dirtyParam = req.getParameter(paramName);
     String param = doNothing(dirtyParam);
@@ -198,7 +205,7 @@ public class BookDetail_jsp extends HttpJspBase {
   }
 
   boolean isEmpty (String val){
-    return (val==null || val.equals("")||val.equals(Integer.toString(UNDEFINT))); 
+    return (val==null || val.equals("")||val.equals(Integer.toString(UNDEFINT)));
   }
 
   String getCheckBoxValue (String val, String checkVal, String uncheckVal, int ctype) {
@@ -209,7 +216,7 @@ public class BookDetail_jsp extends HttpJspBase {
   String toWhereSQL(String fieldName, String fieldVal, int type) {
     String res = "";
     switch(type) {
-      case adText: 
+      case adText:
         if (! "".equals(fieldVal)) {
           res = " " + fieldName + " like '%" + fieldVal + "%'";
         }
@@ -228,7 +235,7 @@ public class BookDetail_jsp extends HttpJspBase {
     String param = value;
     if ("".equals(param) && (type == adText || type == adDate) ) {
       return "Null";
-    } 
+    }
     switch (type) {
       case adText: {
         param = replace(param, "'", "''");
@@ -253,7 +260,7 @@ public class BookDetail_jsp extends HttpJspBase {
       }
       case adDate: {
         param = "'" + param + "'";
-        break;      
+        break;
       }
     }
     return param;
@@ -309,6 +316,14 @@ public class BookDetail_jsp extends HttpJspBase {
     return sOptions;
   }
 
+
+
+//
+//   Filename: BookDetail.jsp
+//   Generated with CodeCharge  v.1.2.0
+//   JSP.ccp build 05/21/2001
+//
+
   String getOptionsLOV( String sLOV, boolean isSearch, boolean isRequired, String selectedValue ) {
     String sSel = "";
     String slOptions = "";
@@ -358,7 +373,7 @@ public class BookDetail_jsp extends HttpJspBase {
     if (  ( i % 2 ) == 0 ) sOptions += slOptions;
     return sOptions;
   }
-
+              
   String getValFromLOV( String selectedValue , String sLOV) {
     String sRes = "";
     String id = "";
@@ -402,7 +417,6 @@ public class BookDetail_jsp extends HttpJspBase {
     return sRes;
   }
 
-
   String checkSecurity(int iLevel, javax.servlet.http.HttpSession session, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpServletRequest request){
     try {
       Object o1 = session.getAttribute("UserID");
@@ -423,22 +437,8 @@ public class BookDetail_jsp extends HttpJspBase {
     return "";
   }
 
-
-
-//
-//   Filename: BookDetail.jsp
-//   Generated with CodeCharge  v.1.2.0
-//   JSP.ccp build 05/21/2001
-//
-
-static final String sFileName = "BookDetail.jsp";
-              
-
-
-
-
   String DetailAction(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sAction, String sForm, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
-  
+
     String sDetailErr ="";
     try {
 
@@ -455,7 +455,7 @@ static final String sFileName = "BookDetail.jsp";
       boolean bErr = false;
       long iCount = 0;
 
-  
+
       sParams = "?";
       sParams += "item_id=" + toURL(getParam( request, "Trn_item_id"));
       String pPKitem_id = "";
@@ -477,7 +477,7 @@ static final String sFileName = "BookDetail.jsp";
       String fldprice="";
 
       // Load all form fields into variables
-    
+
 
       sSQL = "";
       // Create SQL statement
@@ -490,7 +490,7 @@ static final String sFileName = "BookDetail.jsp";
       catch(java.sql.SQLException e) {
         sDetailErr = e.toString(); return (sDetailErr);
       }
-  
+
       try {
         if ( stat != null ) stat.close();
         if ( conn != null ) conn.close();
@@ -504,9 +504,6 @@ static final String sFileName = "BookDetail.jsp";
     return (sDetailErr);
   }
 
-  
-
-
   void Detail_Show(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sDetailErr, String sForm, String sAction, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
     try {
 
@@ -519,7 +516,7 @@ static final String sFileName = "BookDetail.jsp";
       String requiredParams = "";
       String primaryKeyParams ="";
       java.util.Hashtable rsHash = new java.util.Hashtable();
-      
+
       String pitem_id = "";
 
       String fldcategory_id="";
@@ -546,13 +543,13 @@ static final String sFileName = "BookDetail.jsp";
         flditem_id = getParam( request, "item_id");
         transitParamsHidden += "<input type=\"hidden\" name=\"Trn_item_id\" value=\""+getParam( request, "Trn_item_id")+"\">";
         transitParams += "Trn_item_id="+getParam( request, "Trn_item_id")+"&";
-        
+
         pitem_id = getParam( request, "PK_item_id");
       }
 
-      
+
       if ( isEmpty(pitem_id)) { bPK = false; }
-      
+
       sWhere += "item_id=" + toSQL(pitem_id, adNumber);
       primaryKeyParams += "<input type=\"hidden\" name=\"PK_item_id\" value=\""+pitem_id+"\"/>";
 
@@ -587,7 +584,7 @@ static final String sFileName = "BookDetail.jsp";
         fldproduct_url = (String) rsHash.get("product_url");
 
         if (sAction.equals("") || ! "Detail".equals(sForm)) {
-      
+
           flditem_id = (String) rsHash.get("item_id");
           fldname = (String) rsHash.get("name");
           fldauthor = (String) rsHash.get("author");
@@ -607,69 +604,68 @@ static final String sFileName = "BookDetail.jsp";
           fldnotes = (String) rsHash.get("notes");
           fldproduct_url = (String) rsHash.get("product_url");
         }
-        
+
       }
       else {
         if ( "".equals(sDetailErr)) {
           flditem_id = toHTML(getParam(request,"item_id"));
         }
       }
-      
+
       // Set lookup fields
           fldcategory_id = dLookUp( stat, "categories", "name", "category_id=" + toSQL(fldcategory_id, adNumber));
       if ( "".equals(sDetailErr)) {
-      
+
 fldimage_url="<img border=0 src=" + fldimage_url + ">";
 fldproduct_url="Review this book on Amazon.com";
       }
 
 
       // Show form field
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Title</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<font style=\"font-size: 10pt; color: #000000\">"+toHTML(fldname)+"&nbsp;</font>");
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Author</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<font style=\"font-size: 10pt; color: #000000\">"+toHTML(fldauthor)+"&nbsp;</font>");
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Category</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<font style=\"font-size: 10pt; color: #000000\">"+toHTML(fldcategory_id)+"&nbsp;</font>");
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Price</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<font style=\"font-size: 10pt; color: #000000\">"+toHTML(fldprice)+"&nbsp;</font>");
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Picture</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<a href=\""+(String) rsHash.get("product_url")+"\"><font style=\"font-size: 10pt; color: #000000\">"+fldimage_url+"</font></a>");
 
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Notes</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<font style=\"font-size: 10pt; color: #000000\">"+fldnotes+"&nbsp;</font>");
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\"></font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<a href=\""+(String) rsHash.get("product_url")+"\"><font style=\"font-size: 10pt; color: #000000\">"+toHTML(fldproduct_url)+"</font></a>");
 
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td colspan=\"2\" align=\"right\">");
-      
+
 
       if ( bPK && ! (sAction.equals("insert") && "Detail".equals(sForm))) {
-        
+
         out.print("<input type=\"hidden\" name=\"FormName\" value=\"Detail\"><input type=\"hidden\" value=\"\" name=\"FormAction\">");
       }
       out.print("<input type=\"hidden\" name=\"item_id\" value=\""+toHTML(flditem_id)+"\">");
       out.print(transitParamsHidden+requiredParams+primaryKeyParams);
       out.println("</td>\n     </tr>\n     </form>\n    </table>");
-      
+
 
 
 
     }
     catch (Exception e) { out.println(e.toString()); }
-  } 
-
+  }
 
   String OrderAction(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sAction, String sForm, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
-  
+
     String sOrderErr ="";
     try {
 
@@ -686,7 +682,7 @@ fldproduct_url="Review this book on Amazon.com";
       boolean bErr = false;
       long iCount = 0;
 
-  
+
       String pPKorder_id = "";
 
       final int iinsertAction = 1;
@@ -698,7 +694,7 @@ fldproduct_url="Review this book on Amazon.com";
       if ( sAction.equalsIgnoreCase("update") ) { iAction = iupdateAction; }
       if ( sAction.equalsIgnoreCase("delete") ) { iAction = ideleteAction; }
 
-      // Create WHERE statement...
+      // Create WHERE statement ...
 
 
       String fldUserID="";
@@ -707,7 +703,7 @@ fldproduct_url="Review this book on Amazon.com";
       String fldorder_id="";
 
       // Load all form fields into variables
-    
+
       fldUserID = (String) session.getAttribute("UserID");
       fldquantity = getParam(request, "quantity");
       flditem_id = getParam(request, "item_id");
@@ -732,20 +728,20 @@ fldproduct_url="Review this book on Amazon.com";
       // Create SQL statement
 
       switch (iAction) {
-  
+
         case iinsertAction :
-          
-            sSQL = "insert into orders (" + 
-                "member_id," + 
+
+            sSQL = "insert into orders (" +
+                "member_id," +
                 "quantity," +
                 "item_id)" +
 
-                " values (" + 
+                " values (" +
                 toSQL(fldUserID, adNumber) + "," +
                 toSQL(fldquantity, adNumber) + "," +
                 toSQL(flditem_id, adNumber) + ")";
           break;
-  
+
       }
 
       if ( sOrderErr.length() > 0 ) return sOrderErr;
@@ -756,7 +752,7 @@ fldproduct_url="Review this book on Amazon.com";
       catch(java.sql.SQLException e) {
         sOrderErr = e.toString(); return (sOrderErr);
       }
-  
+
       try {
         if ( stat != null ) stat.close();
         if ( conn != null ) conn.close();
@@ -770,9 +766,6 @@ fldproduct_url="Review this book on Amazon.com";
     return (sOrderErr);
   }
 
-  
-
-
   void Order_Show(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sOrderErr, String sForm, String sAction, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
     try {
 
@@ -785,7 +778,7 @@ fldproduct_url="Review this book on Amazon.com";
       String requiredParams = "";
       String primaryKeyParams ="";
       java.util.Hashtable rsHash = new java.util.Hashtable();
-      
+
       String porder_id = "";
 
       String flditem_id="";
@@ -809,9 +802,9 @@ fldproduct_url="Review this book on Amazon.com";
         porder_id = getParam( request, "PK_order_id");
       }
 
-      
+
       if ( isEmpty(porder_id)) { bPK = false; }
-      
+
       sWhere += "order_id=" + toSQL(porder_id, adNumber);
       primaryKeyParams += "<input type=\"hidden\" name=\"PK_order_id\" value=\""+porder_id+"\"/>";
 
@@ -819,7 +812,7 @@ fldproduct_url="Review this book on Amazon.com";
 
 
       out.println("    <table style=\"\">");
-      
+
       if ( ! sOrderErr.equals("")) {
         out.println("     <tr>\n      <td style=\"background-color: #FFFFFF; border-width: 1\" colspan=\"2\"><font style=\"font-size: 10pt; color: #000000\">"+sOrderErr+"</font></td>\n     </tr>");
       }
@@ -844,12 +837,12 @@ fldproduct_url="Review this book on Amazon.com";
         }
 
         if (sAction.equals("") || ! "Order".equals(sForm)) {
-      
+
           fldorder_id = (String) rsHash.get("order_id");
           fldquantity = (String) rsHash.get("quantity");
           flditem_id = (String) rsHash.get("item_id");
         }
-        
+
       }
       else {
         if ( "".equals(sOrderErr)) {
@@ -857,40 +850,39 @@ fldproduct_url="Review this book on Amazon.com";
           fldquantity= "1";
         }
       }
-      
+
 
 
       // Show form field
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Quantity</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<input type=\"text\"  name=\"quantity\" maxlength=\"10\" value=\""+toHTML(fldquantity)+"\" size=\"10\">");
 
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td colspan=\"2\" align=\"right\">");
-      
+
 
       if ( bPK && ! (sAction.equals("insert") && "Order".equals(sForm))) {
-        
+
         out.print("<input type=\"hidden\" name=\"FormName\" value=\"Order\"><input type=\"hidden\" value=\"\" name=\"FormAction\">");
       }
-      
+
       else {
         out.print("<input type=\"submit\" value=\"Add to Shopping Cart\" onclick=\"document.Order.FormAction.value = 'insert';\">");
         out.print("<input type=\"hidden\" name=\"FormName\" value=\"Order\"><input type=\"hidden\" value=\"insert\" name=\"FormAction\">");
       }out.print("<input type=\"hidden\" name=\"order_id\" value=\""+toHTML(fldorder_id)+"\">");out.print("<input type=\"hidden\" name=\"item_id\" value=\""+toHTML(flditem_id)+"\">");
       out.print(transitParamsHidden+requiredParams+primaryKeyParams);
       out.println("</td>\n     </tr>\n     </form>\n    </table>");
-      
+
 
 
 
     }
     catch (Exception e) { out.println(e.toString()); }
-  } 
-
+  }
 
   String RatingAction(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sAction, String sForm, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
-  
+
     String sRatingErr ="";
     try {
 
@@ -907,7 +899,7 @@ fldproduct_url="Review this book on Amazon.com";
       boolean bErr = false;
       long iCount = 0;
 
-  
+
       sParams = "?";
       sParams += "item_id=" + toURL(getParam( request, "Trn_item_id"));
       String pPKitem_id = "";
@@ -923,7 +915,7 @@ fldproduct_url="Review this book on Amazon.com";
 
       // Create WHERE statement
 
-      if ( iAction == iupdateAction || iAction == ideleteAction ) { 
+      if ( iAction == iupdateAction || iAction == ideleteAction ) {
         pPKitem_id = getParam( request, "PK_item_id");
         if ( isEmpty(pPKitem_id)) return sRatingErr;
         sWhere = "item_id=" + toSQL(pPKitem_id, adNumber);
@@ -937,7 +929,7 @@ fldproduct_url="Review this book on Amazon.com";
       String fldrating_count_view="";
 
       // Load all form fields into variables
-    
+
       fldrating = getParam(request, "rating");
       fldrating_count = getParam(request, "rating_count");
       // Validate fields
@@ -961,9 +953,9 @@ fldproduct_url="Review this book on Amazon.com";
       // Create SQL statement
 
       switch (iAction) {
-  
+
       case iupdateAction:
-        
+
 sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rating_count=rating_count+1 where item_id=" + getParam(request, "item_id");
         if ("".equals(sSQL)) {
           sSQL = "update items set " +
@@ -972,7 +964,7 @@ sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rati
           sSQL = sSQL + " where " + sWhere;
         }
         break;
-      
+
       }
 
       if ( sRatingErr.length() > 0 ) return sRatingErr;
@@ -983,7 +975,7 @@ sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rati
       catch(java.sql.SQLException e) {
         sRatingErr = e.toString(); return (sRatingErr);
       }
-  
+
       try {
         if ( stat != null ) stat.close();
         if ( conn != null ) conn.close();
@@ -997,9 +989,6 @@ sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rati
     return (sRatingErr);
   }
 
-  
-
-
   void Rating_Show(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sRatingErr, String sForm, String sAction, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
     try {
 
@@ -1012,7 +1001,7 @@ sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rati
       String requiredParams = "";
       String primaryKeyParams ="";
       java.util.Hashtable rsHash = new java.util.Hashtable();
-      
+
       String pitem_id = "";
 
       String flditem_id="";
@@ -1038,13 +1027,13 @@ sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rati
         fldrating_count = getParam( request, "rating_count");
         transitParamsHidden += "<input type=\"hidden\" name=\"Trn_item_id\" value=\""+getParam( request, "Trn_item_id")+"\">";
         transitParams += "Trn_item_id="+getParam( request, "Trn_item_id")+"&";
-        
+
         pitem_id = getParam( request, "PK_item_id");
       }
 
-      
+
       if ( isEmpty(pitem_id)) { bPK = false; }
-      
+
       sWhere += "item_id=" + toSQL(pitem_id, adNumber);
       primaryKeyParams += "<input type=\"hidden\" name=\"PK_item_id\" value=\""+pitem_id+"\"/>";
 
@@ -1079,7 +1068,7 @@ sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rati
         }
 
         if (sAction.equals("") || ! "Rating".equals(sForm)) {
-      
+
           flditem_id = (String) rsHash.get("item_id");
           fldrating_view = (String) rsHash.get("rating");
           fldrating_count_view = (String) rsHash.get("rating_count");
@@ -1092,16 +1081,16 @@ sSQL = "update items set rating=rating+" + getParam(request, "rating") + ", rati
           fldrating_count_view = (String) rsHash.get("rating_count");
           fldrating_count = (String) rsHash.get("rating_count");
         }
-        
+
       }
       else {
         if ( "".equals(sRatingErr)) {
           flditem_id = toHTML(getParam(request,"item_id"));
         }
       }
-      
+
       if ( "".equals(sRatingErr)) {
-      
+
 if (fldrating_view.equals("0"))
       {
         fldrating_view = "Not rated yet";
@@ -1115,45 +1104,38 @@ if (fldrating_view.equals("0"))
 
 
       // Show form field
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Current Rating</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<font style=\"font-size: 10pt; color: #000000\">"+fldrating_view+"&nbsp;</font>");
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Total Votes</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); out.print("<font style=\"font-size: 10pt; color: #000000\">"+toHTML(fldrating_count_view)+"&nbsp;</font>");
       out.println("</td>\n     </tr>");
-      
-      out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Your Rating</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">"); 
+
+      out.print("     <tr>\n      <td style=\"background-color: #FFEAC5; border-style: inset; border-width: 0\"><font style=\"font-size: 10pt; color: #000000\">Your Rating</font></td><td style=\"background-color: #FFFFFF; border-width: 1\">");
       out.print("<select name=\"rating\">"+getOptionsLOV("1;Deficient;2;Regular;3;Good;4;Very Good;5;Excellent",false,true,fldrating)+"</select>");
-      
+
       out.println("</td>\n     </tr>");
-      
+
       out.print("     <tr>\n      <td colspan=\"2\" align=\"right\">");
-      
+
 
       if ( bPK && ! (sAction.equals("insert") && "Rating".equals(sForm))) {
         out.print("<input type=\"submit\" value=\"Vote\" onclick=\"document.Rating.FormAction.value = 'update';\">");
         out.print("<input type=\"hidden\" name=\"FormName\" value=\"Rating\"><input type=\"hidden\" value=\"update\" name=\"FormAction\">");
       }
-      
+
       else {
-        
+
         out.print("<input type=\"hidden\" name=\"FormName\" value=\"Rating\"><input type=\"hidden\" value=\"insert\" name=\"FormAction\">");
       }out.print("<input type=\"hidden\" name=\"item_id\" value=\""+toHTML(flditem_id)+"\">");out.print("<input type=\"hidden\" name=\"rating_count\" value=\""+toHTML(fldrating_count)+"\">");
       out.print(transitParamsHidden+requiredParams+primaryKeyParams);
       out.println("</td>\n     </tr>\n     </form>\n    </table>");
-      
+
 
 
 
     }
     catch (Exception e) { out.println(e.toString()); }
-  } 
-
-  private static java.util.Vector _jspx_includes;
-
-  static {
-    _jspx_includes = new java.util.Vector(1);
-    _jspx_includes.add("/Common.jsp");
   }
 
   public java.util.List getIncludes() {
