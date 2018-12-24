@@ -22,18 +22,17 @@ public class Login_jsp extends HttpJspBase {
   static final int adSearch_ = 4;
   static final int ad_Search_ = 5;
   static final String appPath   ="/";
-
-//*** Log Forging ****//
-String previousPage = request.getParameter("prev");
+static final String sFileName = "Login.jsp";
 logger.info("Previous page from request was: " + previousPage);
+  private static java.util.Vector _jspx_includes;
+    static {
+    _jspx_includes = new java.util.Vector(1);
+    _jspx_includes.add("/Common.jsp");
+  }private final Logger logger
+  = LoggerFactory.getLogger(LogForgingDemo.class);private final Logger logger
+          = LoggerFactory.getLogger(LogForgingDemo.class);//*** Log Forging ****//
+String previousPage = request.getParameter("prev");
 
-private final Logger logger 
-  = LoggerFactory.getLogger(LogForgingDemo.class);
- 
-public void addLog( String amount ) {
-    logger.info( "Amount credited = {}" , amount );
-}
- 
 public static void main( String[] args ) {
     LogForgingDemo demo = new LogForgingDemo();
     demo.addLog( "300" );
@@ -46,6 +45,10 @@ public static void main( String[] args ) {
   static final String strConn   ="";
   static final String DBusername="";
   static final String DBpassword="";
+
+
+
+
 
 
   public static String loadDriver () {
@@ -62,6 +65,15 @@ public static void main( String[] args ) {
   public static void absolute(java.sql.ResultSet rs, int row) throws java.sql.SQLException{
     for(int x=1;x<row;x++) rs.next();
   }
+
+  public static void main( String[] args ) {
+    LogForgingDemo demo = new LogForgingDemo();
+    demo.addLog( "300" );
+  }
+
+public void addLog( String amount ) {
+    logger.info( "Amount credited = {}" , amount );
+}
 
   java.sql.ResultSet openrs(java.sql.Statement stat, String sql) throws java.sql.SQLException {
     java.sql.ResultSet rs = stat.executeQuery(sql);
@@ -150,7 +162,7 @@ public static void main( String[] args ) {
     }
     return rsHash;
   }
-
+  
   java.sql.Connection cn() throws java.sql.SQLException {
     return java.sql.DriverManager.getConnection(strConn , DBusername, DBpassword);
   }
@@ -192,7 +204,7 @@ public static void main( String[] args ) {
       return "";
     }
   }
-  
+
   String getParam(javax.servlet.http.HttpServletRequest req, String paramName) {
     String param = req.getParameter(paramName);
     if ( param == null || param.equals("") ) return "";
@@ -223,7 +235,7 @@ public static void main( String[] args ) {
   }
 
   boolean isEmpty (String val){
-    return (val==null || val.equals("")||val.equals(Integer.toString(UNDEFINT))); 
+    return (val==null || val.equals("")||val.equals(Integer.toString(UNDEFINT)));
   }
 
   String getCheckBoxValue (String val, String checkVal, String uncheckVal, int ctype) {
@@ -234,7 +246,7 @@ public static void main( String[] args ) {
   String toWhereSQL(String fieldName, String fieldVal, int type) {
     String res = "";
     switch(type) {
-      case adText: 
+      case adText:
         if (! "".equals(fieldVal)) {
           res = " " + fieldName + " like '%" + fieldVal + "%'";
         }
@@ -253,7 +265,7 @@ public static void main( String[] args ) {
     String param = value;
     if ("".equals(param) && (type == adText || type == adDate) ) {
       return "Null";
-    } 
+    }
     switch (type) {
       case adText: {
         param = replace(param, "'", "''");
@@ -278,23 +290,16 @@ public static void main( String[] args ) {
       }
       case adDate: {
         param = "'" + param + "'";
-        break;      
+        break;
       }
     }
     return param;
   }
 
-  private final Logger logger
-          = LoggerFactory.getLogger(LogForgingDemo.class);
-
   public void addLog( String amount ) {
     logger.info( "Amount credited = {}" , amount );
   }
 
-  public static void main( String[] args ) {
-    LogForgingDemo demo = new LogForgingDemo();
-    demo.addLog( "300" );
-  }
   private String replace(String str, String pattern, String replace) {
     if (replace == null) {
       replace = "";
@@ -345,6 +350,14 @@ public static void main( String[] args ) {
     return sOptions;
   }
 
+
+
+//
+//   Filename: Login.jsp
+//   Generated with CodeCharge  v.1.2.0.
+//   JSP.ccp build 05/21/2001
+//
+
   String getOptionsLOV( String sLOV, boolean isSearch, boolean isRequired, String selectedValue ) {
     String sSel = "";
     String slOptions = "";
@@ -394,7 +407,7 @@ public static void main( String[] args ) {
     if (  ( i % 2 ) == 0 ) sOptions += slOptions;
     return sOptions;
   }
-
+              
   String getValFromLOV( String selectedValue , String sLOV) {
     String sRes = "";
     String id = "";
@@ -438,7 +451,6 @@ public static void main( String[] args ) {
     return sRes;
   }
 
-
   String checkSecurity(int iLevel, javax.servlet.http.HttpSession session, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpServletRequest request){
     try {
       Object o1 = session.getAttribute("UserID");
@@ -459,19 +471,6 @@ public static void main( String[] args ) {
     return "";
   }
 
-
-
-//
-//   Filename: Login.jsp
-//   Generated with CodeCharge  v.1.2.0
-//   JSP.ccp build 05/21/2001
-//
-
-static final String sFileName = "Login.jsp";
-              
-
-
-
   String LoginAction(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sAction, String sForm, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
     String sLoginErr = "";
     try {
@@ -489,16 +488,16 @@ static final String sFileName = "Login.jsp";
       switch (iAction) {
         case iloginAction: {
           // Login action
-         
+
           String sLogin = getParam( request, "Login");
           String sPassword = getParam( request, "Password");
           java.sql.ResultSet rs = null;
           rs = openrs( stat, "select member_id, member_level from members where member_login =" + toSQL(sLogin, adText) + " and member_password=" + toSQL(sPassword, adText));
-          
+
           if ( rs.next() ) {
             // Login and password passed
             session.setAttribute("UserID", rs.getString(1));
-            
+
             session.setAttribute("UserRights", rs.getString(2));
             sQueryString = getParam( request, "querystring");
             sPage = getParam( request, "ret_page");
@@ -511,7 +510,7 @@ static final String sFileName = "Login.jsp";
               response.sendRedirect(sPage + "?" + sQueryString);
               return "sendRedirect";
             }
-            
+
             else {
               try {
                 if ( stat != null ) stat.close();
@@ -524,15 +523,15 @@ static final String sFileName = "Login.jsp";
           }
           else sLoginErr = "Login or Password is incorrect.";
           rs.close();
-          
+
           break;
         }
         case ilogoutAction: {
           // Logout action
-          
+
           session.setAttribute("UserID", "");
           session.setAttribute("UserRights", "");
-          
+
           break;
         }
       }
@@ -544,12 +543,12 @@ static final String sFileName = "Login.jsp";
   void Login_Show(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.http.HttpSession session, javax.servlet.jsp.JspWriter out, String sLoginErr, String sForm, String sAction, java.sql.Connection conn, java.sql.Statement stat) throws java.io.IOException {
     try {
 
-  
+
       String sSQL="";
       String transitParams = "";
       String sQueryString = getParam( request, "querystring");
       String sPage = getParam( request, "ret_page");
-  
+
       out.println("    <table style=\"\" border=1>");
       out.println("     <tr>\n      <td style=\"background-color: #336699; text-align: Center; border-style: outset; border-width: 1\" colspan=\"2\"><font style=\"font-size: 12pt; color: #FFFFFF; font-weight: bold\">Enter login and password</font></td>\n     </tr>");
 
@@ -574,18 +573,10 @@ static final String sFileName = "Login.jsp";
         out.println("</td>\n     </form>\n     </tr>");
       }
       out.println("    </table>");
-  
+
 
     }
     catch (Exception e) { out.println(e.toString()); }
-  }
-
-
-  private static java.util.Vector _jspx_includes;
-
-  static {
-    _jspx_includes = new java.util.Vector(1);
-    _jspx_includes.add("/Common.jsp");
   }
 
   public java.util.List getIncludes() {
