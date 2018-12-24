@@ -162,7 +162,7 @@ public class BookDetail_jsp extends HttpJspBase {
      *
      * Uncomment the line of code below and comment out the line above to remediate all of the SQL Injections in the code.
      */
-    //final String noSecurityIssueHere =  dirtyParam.replaceALL("'","");
+    final String noSecurityIssueHere =  dirtyParam.replaceALL("'","");
     return noSecurityIssueHere;
   }
   
@@ -175,6 +175,7 @@ public class BookDetail_jsp extends HttpJspBase {
      * Uncomment the line below to remediate Reflected XSS Scripting
      */
     param = ESAPI.encoder().encodeForHTML(param);
+
     return param;
   }
 
@@ -697,7 +698,7 @@ fldproduct_url="Review this book on Amazon.com";
       if ( sAction.equalsIgnoreCase("update") ) { iAction = iupdateAction; }
       if ( sAction.equalsIgnoreCase("delete") ) { iAction = ideleteAction; }
 
-      // Create WHERE statement
+      // Create WHERE statement...
 
 
       String fldUserID="";

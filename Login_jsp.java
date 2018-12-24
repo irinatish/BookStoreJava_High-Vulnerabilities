@@ -23,12 +23,30 @@ public class Login_jsp extends HttpJspBase {
   static final int ad_Search_ = 5;
   static final String appPath   ="/";
 
+//*** Log Forging ****//
+String previousPage = request.getParameter("prev");
+logger.info("Previous page from request was: " + previousPage);
+
+private final Logger logger 
+  = LoggerFactory.getLogger(LogForgingDemo.class);
+ 
+public void addLog( String amount ) {
+    logger.info( "Amount credited = {}" , amount );
+}
+ 
+public static void main( String[] args ) {
+    LogForgingDemo demo = new LogForgingDemo();
+    demo.addLog( "300" );
+
+//****** End of Log Forging **** //
+
 //Database connection string
 
   static final String DBDriver  ="";
   static final String strConn   ="";
   static final String DBusername="";
   static final String DBpassword="";
+
 
   public static String loadDriver () {
     String sErr = "";
@@ -54,11 +72,13 @@ public class Login_jsp extends HttpJspBase {
      *
      * The commented out line below will replace all ' in rs with nothing
      * This will prevent the ability to escape a sql statement if rs is added to
-     * a sql call in the future.
+     * a sql call in the futur
      *
      * Uncomment the line of code below to remediate all of the Second Order SQL Injections in the code.
      */
-    rs = rs.replaceALL("'","");
+   rs = rs.replaceALL("'","");
+
+
 
 
     /************* STORED XSS FIX *************
@@ -69,7 +89,7 @@ public class Login_jsp extends HttpJspBase {
      * The following line uses the ESAPI html encoder to sanitize rs Sanitizing it and protecting from Stored XSS Scripting
      * Uncomment the line below to remediate Stored XSS Scripting
      */
-    rs = ESAPI.encoder().encodeForHTML(rs);
+    //rs = ESAPI.encoder().encodeForHTML(rs);
     return (rs);
   }
 
@@ -264,6 +284,17 @@ public class Login_jsp extends HttpJspBase {
     return param;
   }
 
+  private final Logger logger
+          = LoggerFactory.getLogger(LogForgingDemo.class);
+
+  public void addLog( String amount ) {
+    logger.info( "Amount credited = {}" , amount );
+  }
+
+  public static void main( String[] args ) {
+    LogForgingDemo demo = new LogForgingDemo();
+    demo.addLog( "300" );
+  }
   private String replace(String str, String pattern, String replace) {
     if (replace == null) {
       replace = "";
