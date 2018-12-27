@@ -180,7 +180,7 @@ static final String sFileName = "BookDetail.jsp";
     /************* REFLECTED XSS SCRIPTING FIX *************
      * The following line uses the ESAPI html encoder to sanitize param Protecting it from Reflected XSS All Clients
      * Uncomment the line below to remediate Reflected XSS Scripting
-     */
+     ****/
     //param = ESAPI.encoder().encodeForHTML(param);
 
     return param;
