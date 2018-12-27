@@ -177,7 +177,7 @@ static final String sFileName = "BookDetail.jsp";
     String dirtyParam = req.getParameter(paramName);
     String param = doNothing(dirtyParam);
     if ( param == null || param.equals("") ) return "";
-    /************* REFLECTED XSS SCRIPTING FIX ***
+    /************* REFLECTED XSS SCRIPTING FIX **********
      * The following line uses the ESAPI html encoder to sanitize param Protecting it from Reflected XSS All Clients
      * Uncomment the line below to remediate Reflected XSS Scripting
      ****/
