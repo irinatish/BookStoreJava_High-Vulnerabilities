@@ -1,1 +1,1 @@
-# BookStoreJava_High-Vulnerabilities test - v5
+# BookStoreJava_High-Vulnerabilities test - v6
