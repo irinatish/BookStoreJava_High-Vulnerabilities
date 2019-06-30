@@ -84,9 +84,9 @@ public void addLog( String amount ) {
      *
      * The commented out line below will replace all ' in rs with nothing
      * This will prevent the ability to escape a sql statement if rs is added to
-     * a sql call in the futur
+     * a sql call in the future
      *
-     * Uncomment the line of code below to remediate all of the Second Order SQL Injections in the code.
+     * Uncomment the line of code below to remediate all of the Second Order SQL Injections in the code...
      */
    rs = rs.replaceALL("'","");
 
